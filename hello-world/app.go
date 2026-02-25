@@ -3,7 +3,7 @@ In the go app, go program much organized into packages, you can have multiple pa
 
 	in a single program and can have different packages organized in different files.
 
-	The main is special package name that this package is the main entry point of the program.
+	The main is special reserved package name that this package is the main entry point of the program.
 
 	The function should also be named as main because go will call and execute that function when the program is run.
 
