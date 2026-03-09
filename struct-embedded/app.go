@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"struct.com/user/user"
+	"struct.com/struct-app/admin"
+	"struct.com/struct-app/user"
 )
 
 func main() {
@@ -17,6 +18,10 @@ func main() {
 	userData.OutputUserData()
 	userData.RemoveName()
 	userData.OutputUserData()
+
+	var adminData admin.Admin
+	adminData = *admin.New("Admin@gmail.com", "Admin123", firstName, lastName, birthdate)
+	adminData.User.OutputUserData()
 
 }
 
