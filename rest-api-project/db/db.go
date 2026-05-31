@@ -25,7 +25,7 @@ func createTables() {
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		title TEXT NOT NULL,
 		description TEXT,
-		date DATETIME,
+		created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 		user_id INTEGER
 	)
 	`
