@@ -26,10 +26,25 @@ func createTables() {
 		title TEXT NOT NULL,
 		description TEXT,
 		created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-		user_id INTEGER
+		user_id INTEGER,
+		FOREIGN KEY (user_id) REFERENCES users(id)
 	)
 	`
+
+	createUserTable := `
+	CREATE TABLE IF NOT EXISTS users (
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		email TEXT NOT NULL UNIQUE,
+		password TEXT NOT NULL,
+		created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+	)
+	`
+
 	_, err := DB.Exec(createEventTable)
+	if err != nil {
+		panic(err)
+	}
+	_, err = DB.Exec(createUserTable)
 	if err != nil {
 		panic(err)
 	}

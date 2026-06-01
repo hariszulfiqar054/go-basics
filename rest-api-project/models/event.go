@@ -70,3 +70,13 @@ func GetEventByID(id string) (*Event, error) {
 	return nil, nil
 
 }
+
+func DeleteEventByID(id string) error {
+	query := `DELETE FROM events WHERE id = ?`
+	row, err := db.DB.Query(query, id)
+	if err != nil {
+		return err
+	}
+	defer row.Close()
+	return nil
+}

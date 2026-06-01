@@ -7,8 +7,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-
-
 func getEvents(context *gin.Context) {
 	events, err := models.GetAllEvents()
 	if err != nil {
@@ -48,4 +46,14 @@ func getEventByID(context *gin.Context) {
 		return
 	}
 	context.JSON(http.StatusOK, event)
+}
+
+func deleteEventById(context *gin.Context) {
+	id := context.Param("id")
+	err := models.DeleteEventByID(id)
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"error": err.Error(), "message": "Could not delete event"})
+		return
+	}
+	context.JSON(http.StatusOK, gin.H{"message": "Event deleted successfully"})
 }
