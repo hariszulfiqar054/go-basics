@@ -50,5 +50,11 @@ func login(context *gin.Context) {
 		return
 	}
 
-	context.JSON(http.StatusOK, gin.H{"message": "Login successful"})
+	token, err := utils.GenerateJWT(int(existingUser.ID), existingUser.Email)
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"error": err.Error(), "message": "Could not generate token"})
+		return
+	}
+
+	context.JSON(http.StatusOK, gin.H{"message": "Login successful", "token": token})
 }
